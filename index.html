@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAS Mobile Test</title>
+</head>
+<body>
+  <h2>GAS Mobile Test</h2>
+  <button onclick="testGAS()">Tap to Test</button>
+  <p id="result">Result will show here...</p>
+
+  <script>
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbz6VZwdffh6RFQA7N37yjlCQQCqKhqs_2UY5oaKlgsoKeiIFRDMo1kQXyuIZCEAAAo/exec";
+
+    async function testGAS() {
+      document.getElementById("result").innerText = "Loading...";
+      try {
+        const res = await fetch(GAS_URL);
+        const data = await res.json();
+        document.getElementById("result").innerText = data.message;
+      } catch (err) {
+        document.getElementById("result").innerText = "Error: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
